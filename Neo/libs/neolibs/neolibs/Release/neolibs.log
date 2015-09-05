@@ -1,0 +1,54 @@
+﻿Build started 2015/8/17 9:11:00.
+     1>Project "C:\Users\erjung\Desktop\书籍\libs\libs\neolibs\neolibs\neolibs.vcxproj" on node 2 (build target(s)).
+     1>PrepareForBuild:
+         Creating directory "C:\Users\erjung\Desktop\书籍\libs\libs\neolibs\Release\".
+       InitializeBuildStatus:
+         Creating "Release\neolibs.unsuccessfulbuild" because "AlwaysCreate" was specified.
+       ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D _MBCS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt ..\..\main.cpp ..\..\neodebug.cpp ..\..\neolock.cpp ..\..\neomemmanager.cpp ..\..\neosafefunc.cpp
+         main.cpp
+         neodebug.cpp
+     1>..\..\neodebug.cpp(29): warning C4996: '_vsnprintf': This function or variable may be unsafe. Consider using _vsnprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\stdio.h(363) : see declaration of '_vsnprintf'
+     1>..\..\neodebug.cpp(50): warning C4996: 'localtime': This function or variable may be unsafe. Consider using localtime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\time.inl(112) : see declaration of 'localtime'
+     1>..\..\neodebug.cpp(51): warning C4996: 'asctime': This function or variable may be unsafe. Consider using asctime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\time.h(153) : see declaration of 'asctime'
+     1>..\..\neodebug.cpp(64): warning C4996: '_vsnprintf': This function or variable may be unsafe. Consider using _vsnprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\stdio.h(363) : see declaration of '_vsnprintf'
+     1>..\..\neodebug.cpp(76): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\stdio.h(234) : see declaration of 'fopen'
+     1>..\..\neodebug.cpp(481): warning C4996: '_vsnprintf': This function or variable may be unsafe. Consider using _vsnprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\stdio.h(363) : see declaration of '_vsnprintf'
+     1>..\..\neodebug.cpp(487): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\stdio.h(234) : see declaration of 'fopen'
+     1>..\..\neodebug.cpp(471): warning C4101: 't' : unreferenced local variable
+         neolock.cpp
+     1>..\..\neolock.cpp(380): warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+     1>..\..\neolock.cpp(456): warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+         neomemmanager.cpp
+     1>..\..\neomemmanager.cpp(232): warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+     1>..\..\neomemmanager.cpp(260): warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+     1>..\..\neomemmanager.cpp(637): warning C4129: 'S' : unrecognized character escape sequence
+         neosafefunc.cpp
+     1>..\..\neosafefunc.cpp(20): warning C4996: '_vsnprintf': This function or variable may be unsafe. Consider using _vsnprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\stdio.h(363) : see declaration of '_vsnprintf'
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\erjung\Desktop\书籍\libs\libs\neolibs\Release\neolibs.exe" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Release\neolibs.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\Users\erjung\Desktop\书籍\libs\libs\neolibs\Release\neolibs.pdb" /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\erjung\Desktop\书籍\libs\libs\neolibs\Release\neolibs.lib" /MACHINE:X86 Release\main.obj
+         Release\neodebug.obj
+         Release\neolock.obj
+         Release\neomemmanager.obj
+         Release\neosafefunc.obj
+         Generating code
+         Finished generating code
+         neolibs.vcxproj -> C:\Users\erjung\Desktop\书籍\libs\libs\neolibs\Release\neolibs.exe
+       Manifest:
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"C:\Users\erjung\Desktop\书籍\libs\libs\neolibs\Release\neolibs.exe;#1" /manifest Release\neolibs.exe.intermediate.manifest
+       FinalizeBuildStatus:
+         Deleting file "Release\neolibs.unsuccessfulbuild".
+         Touching "Release\neolibs.lastbuildstate".
+     1>Done Building Project "C:\Users\erjung\Desktop\书籍\libs\libs\neolibs\neolibs\neolibs.vcxproj" (build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:03.44

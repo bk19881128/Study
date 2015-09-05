@@ -1,0 +1,3 @@
+#g++ compiler: options
+CC := g++.bk
+CPPFLAGS := -O3 -Wall

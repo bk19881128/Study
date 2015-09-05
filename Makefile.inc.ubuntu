@@ -1,0 +1,14 @@
+#Compile option define ##############
+CC = g++
+CXX = g++
+AR = ar
+LD = ld
+ARFLAGS =
+#CFLAGS = -g -Wall -Wextra -pthread
+#CXXFLAGS = -g -Wall -Wextra -pthread
+CFLAGS = -g -Wall -pthread
+CXXFLAGS = -g -Wall -std=c++11 -pthread
+
+RM = rm -f
+
+

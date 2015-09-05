@@ -1,0 +1,49 @@
+include ../../Makefile.inc
+
+#ignore tree module , sort module and list module
+#executable files for this directory
+OBJECTS = main
+#ALLOBJECTS = $(OBJECTS) obj_clean
+ALLOBJECTS = $(OBJECTS) 
+
+all : $(ALLOBJECTS)
+
+main : neosafefunc.o neolock.o neoqueue.o neobaselib.o neothread.o neodebug.o  neomemmanager.o model.o neolog.o main.o
+	$(CC) $(CCFLAGS) neosafefunc.o neothread.o neodebug.o neolock.o neobaselib.o neomemmanager.o model.o neolog.o neoqueue.o main.o -o main  -lpthread
+
+neosafefunc.o : neosafefunc.cpp
+	$(CC) -c neosafefunc.cpp $(CCFLAGS)
+
+neoqueue.o : neoqueue.cpp
+	$(CC) -c neoqueue.cpp $(CCFLAGS)
+
+neobaselib.o : neobaselib.cpp
+	$(CC) -c neobaselib.cpp $(CCFLAGS)
+
+neodebug.o : neodebug.cpp
+	$(CC) -c neodebug.cpp  $(CCFLAGS)
+
+neolock.o : neolock.cpp
+	$(CC) -c neolock.cpp $(CCFLAGS)
+
+neothread.o : neothread.cpp
+	 $(CC) -c neothread.cpp $(CCFLAGS)
+
+neomemmanager.o : neomemmanager.cpp
+	 $(CC) -c neomemmanager.cpp $(CCFLAGS)
+
+model.o : model.cpp
+	$(CC) -c model.cpp $(CCFLAGS)
+
+neolog.o : neolog.cpp
+	$(CC) -c neolog.cpp $(CCFLAGS)
+
+main.o : main.cpp
+	$(CC) -c main.cpp $(CCFLAGS)
+
+.PHONY : obj_clean  clean
+obj_clean :
+	rm -f *.o
+
+clean :
+	rm -f *.o $(OBJECTS)
