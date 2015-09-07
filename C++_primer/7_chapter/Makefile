@@ -2,7 +2,7 @@ include ../../Makefile.inc
 
 TARGET = add_item avg_price useAccount useScreen
 
-DIRS_TARGET = 1 4
+DIRS_TARGET = 1 4 41 43
 
 all:$(TARGET) dir_build obj_clean
 
