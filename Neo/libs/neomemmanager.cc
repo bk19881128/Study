@@ -7,7 +7,7 @@
 namespace NEOLIB {
 //内存块元素管理,主要是右之树的管理
 CNEOMemStackToken::CNEOMemStackToken(int nBlockSize/*要管理的基本内存块大小*/,CNEOLowDebug *pDebug):
-    m_pDebug(pDebug),m_Lock()
+    m_Lock(), m_pDebug(pDebug)
 {
     //m_pDebug=pDebug;
     m_ulBlockSize=(unsigned long)nBlockSize;

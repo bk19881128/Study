@@ -32,6 +32,8 @@
 using std::istream; using std::ostream;
 
 #include "Sales_data.h"
+using std::ifstream; using std::ofstream;
+
 Sales_data::Sales_data()
 {
 	units_sold = 0;
@@ -79,8 +81,25 @@ read(istream &is, Sales_data &item)
 	return is;
 }
 
+ifstream&
+read_file(ifstream &is, Sales_data &item)
+{
+	double price = 0;
+	is >> item.bookNo >> item.units_sold >> price;
+	item.revenue = price * item.units_sold;
+	return is;
+}
+
 ostream&
 print(ostream &os, const Sales_data &item)
+{
+	os << item.isbn() << " " << item.units_sold << " " 
+	   << item.revenue << " " << item.avg_price();
+	return os;
+}
+
+ofstream&
+print_file(ofstream &os, const Sales_data &item)
 {
 	os << item.isbn() << " " << item.units_sold << " " 
 	   << item.revenue << " " << item.avg_price();

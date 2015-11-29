@@ -325,6 +325,11 @@ void printThreadInfo(void *pCallParam,MBOOL &bThreadContinue)
                     );
         }
     }
+
+    //workaround fix warning
+    MBOOL workaround;
+    workaround = bThreadContinue;
+    bThreadContinue = workaround;
 }
 //////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////
@@ -476,6 +481,11 @@ void CNEOTaskPool::TaskCtrlThread(void *pCallParam,
        }
     }//for
     pThis->m_nThreadCount.Dec();
+
+    //workaround fix warning
+    MBOOL workaround;
+    workaround = bThreadContinue;
+    bThreadContinue = workaround;
 }
 /*
   守护线程会启动30个服务线程：

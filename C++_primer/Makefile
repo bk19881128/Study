@@ -4,7 +4,7 @@
 #
 #
 
-DIRS = 7_chapter
+DIRS = 7_chapter 8_chapter 9_chapter
 
 
 BUILD_DIRS = ${DIRS}

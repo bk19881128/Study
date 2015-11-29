@@ -32,11 +32,14 @@
 
 #include <string>
 #include <iostream>
+#include <fstream>
 
 class Sales_data {
 friend Sales_data add(const Sales_data&, const Sales_data&);
 friend std::ostream &print(std::ostream&, const Sales_data&);
+friend std::ofstream &print_file(std::ofstream&, const Sales_data&);
 friend std::istream &read(std::istream&, Sales_data&);
+friend std::ifstream &read_file(std::ifstream&, Sales_data&);
 public:
 	// constructors
 	Sales_data();
@@ -59,7 +62,9 @@ private:
 // nonmember Sales_data interface functions
 Sales_data add(const Sales_data&, const Sales_data&);
 std::ostream &print(std::ostream&, const Sales_data&);
+std::ofstream &print_file(std::ofstream&, const Sales_data&);
 std::istream &read(std::istream&, Sales_data&);
+std::ifstream &read_file(std::ifstream&, Sales_data&);
 
 // used in future chapters
 inline 

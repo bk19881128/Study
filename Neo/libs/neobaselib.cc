@@ -30,6 +30,10 @@ CNEOBaseLibrary::CNEOBaseLibrary(const char *szAppName,
     m_pTaskPool=NULL;
     m_pMemPool=NULL;
     m_pLog=NULL;
+    //just a workaround to avoid warnings:
+    if(pPrintInfoCallbackParam) {
+
+    }
     SafeStrcpy(m_szAppName,szAppName,NEO_APPLICATION_NAME_SIZE);
     SafeStrcpy(m_szLogPathName,szLogPath,NEO_APP_LOG_PATH_NAME_SIZE);
     SafeStrcpy(m_szTempPathName,szTempPath,NEO_APP_TEMP_PATH_NAME_SIZE);
@@ -168,6 +172,10 @@ CNEOBaseLibrary::~CNEOBaseLibrary()
 bool CNEOBaseLibrary::InfoPrintTaskCallback(void *pCallParam,int &nStatus)
 {
     CNEOBaseLibrary *pThis=(CNEOBaseLibrary*)pCallParam;
+    //just a workaround to avoid warnings
+    if(nStatus == 1) {
+
+    }
     if(TimelsUp(pThis->m_tLastPrint,MAIN_LOOP_DELAY))
     {
        TimeSetNow(pThis->m_tLastPrint);

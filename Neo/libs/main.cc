@@ -265,16 +265,20 @@ int main()
 
 	printf(">>>>>>>>>>>>>>>>>>>>>>>>CNEOTaskRunInfo>>>>>>>>>>>>>>>>>>>>>>>>\n");
 	SNEOTaskRunInfo taskInfo;
-	CNEOTaskRunInfo *pTaskRunInfo = new CNEOTaskRunInfo(&taskInfo);
+	//CNEOTaskRunInfo *pTaskRunInfo = new CNEOTaskRunInfo(&taskInfo);
+	new CNEOTaskRunInfo(&taskInfo);
 	Sleep(OPEN_THREAD_DELAY);
 
 	printf(">>>>>>>>>>>>>>>>>>>>>>>>CNEOTaskRun>>>>>>>>>>>>>>>>>>>>>>>>\n");
-    CNEOTaskRun *pTaskRun = new CNEOTaskRun(mempool,plog,ptaskpool);
+    //CNEOTaskRun *pTaskRun = new CNEOTaskRun(mempool,plog,ptaskpool);
+    new CNEOTaskRun(mempool,plog,ptaskpool);
 
 	printf(">>>>>>>>>>>>>>>>>>>>>>>>CNEOBaseLibrary>>>>>>>>>>>>>>>>>>>>>>>>\n");
 	//CNEOBaseLibrary *pBaseLib = new CNEOBaseLibrary("baselib",".","log",NULL);
-	CNEOBaseLibrary *pBaseLib = CNEOBaseLibrary::getInstance("baselib",".","log",NULL);
-	CNEOBaseLibrary *pBaseLib1 = CNEOBaseLibrary::getInstance("baselib",".","log",NULL);
+	//CNEOBaseLibrary *pBaseLib = CNEOBaseLibrary::getInstance("baselib",".","log",NULL);
+	CNEOBaseLibrary::getInstance("baselib",".","log",NULL);
+	//CNEOBaseLibrary *pBaseLib1 = CNEOBaseLibrary::getInstance("baselib",".","log",NULL);
+	CNEOBaseLibrary::getInstance("baselib",".","log",NULL);
     
 #ifdef WIN32
     system("pause");

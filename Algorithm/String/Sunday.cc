@@ -107,7 +107,7 @@ int main() {
         cout << "use Sunday algorithm: ";
         cout << double(end - start)/CLOCKS_PER_SEC << "s" << endl;
 
-	char *test;
+	char *test = NULL;
         start = clock();
         for(int i = 0; i <= 1000000; i++)
 	    test = strstr(text, patt);
@@ -128,6 +128,9 @@ int main() {
 	result = algorithmBrute(text, patt);
 	if(result == true) {
 		cout << "Result:include" << endl;
+            #ifdef PERFORMANCE_MONITOR
+                cout << "location is at " << test - text << endl;
+            #endif
 	}
 	else {
 		cout << "Result:not include" << endl;

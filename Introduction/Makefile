@@ -10,9 +10,9 @@ allgen:$(TARGET) dir_build_allgen
 
 .PHONY : obj_clean clean
 obj_clean :
-	@$(RM) *.o
+	$(RM) *.o
 clean :
-	@$(RM) $(TARGET) *.o
+	$(RM) $(TARGET) *.o
 	@ for dir in ${DIRS_TARGET}; do (cd $${dir}; ${MAKE} clean) ; done
 
 dir_build :

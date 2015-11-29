@@ -8,7 +8,8 @@ DIRS = Algorithm \
        Introduction \
        C++_primer \
        Interview \
-       Neo
+       Neo \
+       TLPI \
 
 BUILD_DIRS = ${DIRS}
 
