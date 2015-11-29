@@ -1,0 +1,8 @@
+<baokun>
+This chapter introdues most of the basic elements of C++:types,
+variables, expressions, statesments, and functions. along the way,
+we will briefly explain how to complie and execute a program.
+	After having read this chapter and worked through the exercises,
+you sould be able to write, complie and execute simple programs.
+Later chapters will assume that you can use the features introduced in this
+chapter, and will explain these features in more detail.

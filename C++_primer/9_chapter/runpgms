@@ -1,0 +1,6 @@
+echo "erase1: " && ./erase1 < data/erase
+
+../noinput capacity erase2 find_ops \
+		   find-str refreshIter stack \
+		   str_assignOps substr useConvs
+

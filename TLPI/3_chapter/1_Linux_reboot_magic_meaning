@@ -1,0 +1,20 @@
+#! /bin/sh
+
+LINUX_REBOOT_MAGIC2=672274793
+LINUX_REBOOT_MAGIC2A=85072278 
+LINUX_REBOOT_MAGIC2B=369367448
+LINUX_REBOOT_MAGIC2C=537993216
+
+export LINUX_REBOOT_MAGIC2
+
+printf "LINUX_REBOOT_MAGIC2: %x, the time linus born\n" $LINUX_REBOOT_MAGIC2
+printf "  Also has another meaning: "
+perl -e 'print localtime($ENV{LINUX_REBOOT_MAGIC2})."\n";'
+printf "  It is the time linux born\n\n"
+
+printf "LINUX_REBOOT_MAGIC2A: %x, the time linus's the first daughter born\n\n" $LINUX_REBOOT_MAGIC2A
+
+printf "LINUX_REBOOT_MAGIC2B: %x, the time linus's the second daughter born\n\n" $LINUX_REBOOT_MAGIC2B
+
+printf "LINUX_REBOOT_MAGIC2C: %x, the time linus's the third daughter born\n" $LINUX_REBOOT_MAGIC2C
+
