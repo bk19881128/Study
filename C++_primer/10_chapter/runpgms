@@ -1,0 +1,21 @@
+echo "absInt:" && ./absInt < data/absInt
+echo "accum:" && ./accum < data/accum
+echo "accum4:" && ./accum4 < data/iostream_iter
+echo "avg_price:" && ./avg_price < data/book_sales
+#echo "bind2:" && ./bind2 < data/count-size
+echo "elimDups: " && ./elimDups < data/count-size
+echo "equiv-istream-iter:" && ./equiv-istream-iter < data/iostream_iter
+echo "iostream_iter:" && ./iostream_iter < data/iostream_iter
+echo "newcount-size:" && ./newcount-size < data/count-size
+echo "ostreamIter2:" && ./ostreamIter2 < data/iostream_iter
+echo "rcomma:" && ./rcomma < data/rcomma
+echo "reverse-iter:" && ./reverse-iter < data/reverse-iter
+echo "sortSI:" && ./sortSI < data/book_sales
+echo "use_find:" && ./use_find < data/use_find
+echo "use-istream-iter:" && ./use-istream-iter < data/iostream_iter
+
+../noinput equal inserters reverse \
+		   rev-iters 
+
+# C++ 11 file:
+# ../noinput lambda

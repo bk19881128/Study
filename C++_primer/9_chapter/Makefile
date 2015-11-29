@@ -4,7 +4,7 @@ TARGET = capacity erase1 erase2 find_ops \
 		find-str refreshIter stack \
 		str_assignOps substr useConvs
 
-DIRS_TARGET = 4 11 14 15 18 24 26 27 31 41
+DIRS_TARGET = 4 11 14 15 18 24 26 27 31 41 43 44 45 47 50 52
 
 all:$(TARGET) dir_build obj_clean
 

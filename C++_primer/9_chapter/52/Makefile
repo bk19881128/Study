@@ -1,6 +1,6 @@
 include ../../../Makefile.inc
 
-TARGET = 1_replace_string
+TARGET = parenthesized_stack
 
 DIRS_TARGET = 
 

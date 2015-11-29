@@ -1,6 +1,6 @@
 include ../../../Makefile.inc
 
-TARGET = 1_replace_string
+TARGET = suffix_and_prefix
 
 DIRS_TARGET = 
 

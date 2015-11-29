@@ -1,6 +1,6 @@
 include ../../../Makefile.inc
 
-TARGET = 1_replace_string
+TARGET = find_first_of
 
 DIRS_TARGET = 
 
