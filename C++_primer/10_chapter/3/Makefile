@@ -1,15 +1,8 @@
-include ../../Makefile.inc
+include ../../../Makefile.inc
 
-TARGET = absInt accum accum4 \
-                  avg_price elimDups equal \
-                  equiv-istream-iter inserters \
-                  iostream_iter newcount-size \
-                  ostreamIter2 rcomma \
-                  reverse reverse-iter rev-iters \
-                  sortSI use_find use-istream-iter
-#!!!!!!bind2 not OK!!!!!
+TARGET = accumulate_algorithm
 
-DIRS_TARGET = 1 3 5 6 9
+DIRS_TARGET = 
 
 all:$(TARGET) dir_build obj_clean
 
@@ -27,7 +20,7 @@ dir_build :
 
 dir_build_allgen :
 	@ for dir in ${DIRS_TARGET}; do (cd $${dir}; ${MAKE} allgen) ; done
-    
 
-% : %.cc
+replace_string : replace_string.cc
 	$(CXX) -o $@ $^ ${CXXFLAGS}
+
