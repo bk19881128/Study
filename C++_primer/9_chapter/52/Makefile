@@ -21,6 +21,6 @@ dir_build :
 dir_build_allgen :
 	@ for dir in ${DIRS_TARGET}; do (cd $${dir}; ${MAKE} allgen) ; done
 
-replace_string : replace_string.cc
+% : %.cc
 	$(CXX) -o $@ $^ ${CXXFLAGS}
 

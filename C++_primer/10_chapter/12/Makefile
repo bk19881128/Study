@@ -1,6 +1,6 @@
 include ../../../Makefile.inc
 
-TARGET = equal_algorithm
+TARGET = sort_item
 
 DIRS_TARGET = 
 
@@ -20,7 +20,11 @@ dir_build :
 
 dir_build_allgen :
 	@ for dir in ${DIRS_TARGET}; do (cd $${dir}; ${MAKE} allgen) ; done
+    
 
-% : %.cc
+
+
+sort_item : sort_item.cc ../../7_chapter/Sales_data.cc
 	$(CXX) -o $@ $^ ${CXXFLAGS}
+
 

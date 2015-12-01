@@ -1,6 +1,6 @@
 include ../../../Makefile.inc
 
-TARGET = equal_algorithm
+TARGET = partition_algorithm
 
 DIRS_TARGET = 
 

@@ -9,7 +9,7 @@ TARGET = absInt accum accum4 \
                   sortSI use_find use-istream-iter
 #!!!!!!bind2 not OK!!!!!
 
-DIRS_TARGET = 1 3 5 6 9
+DIRS_TARGET = 1 3 5 6 9 12 13
 
 all:$(TARGET) dir_build obj_clean
 
