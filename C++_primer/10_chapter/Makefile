@@ -6,10 +6,10 @@ TARGET = absInt accum accum4 \
                   iostream_iter newcount-size \
                   ostreamIter2 rcomma \
                   reverse reverse-iter rev-iters \
-                  sortSI use_find use-istream-iter
+                  sortSI use_find use-istream-iter lambda
 #!!!!!!bind2 not OK!!!!!
 
-DIRS_TARGET = 1 3 5 6 9 12 13
+DIRS_TARGET = 1 3 5 6 9 12 13 14 16 17 21 22 27
 
 all:$(TARGET) dir_build obj_clean
 
