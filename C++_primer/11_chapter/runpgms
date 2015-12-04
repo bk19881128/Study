@@ -1,0 +1,11 @@
+echo "wcEx:" && ./wcEx < data/storyDataFile
+echo "erasemap:" && ./erasemap < data/storyDataFile
+echo "restricted_count:" && ./restricted_count < data/word_count
+echo "word_count:" && ./word_count < data/storyDataFile
+echo "pair:" && ./pair < data/storyDataFile
+echo "unorderedWordCount:" && ./unorderedWordCount < data/word_count
+echo "word_transform:" && ./word_transform data/rules data/text
+
+../noinput map1 multimap setOps 
+
+
