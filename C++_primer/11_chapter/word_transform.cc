@@ -48,7 +48,8 @@ map<string, string> buildMap(ifstream &map_file)
 	// read the first word into key and the rest of the line into value
 	while (map_file >> key && getline(map_file, value))
 		if (value.size() > 1) // check that there is a transformation
-        	trans_map[key] = value.substr(1); // skip leading space 
+//        	trans_map[key] = value.substr(1); // skip leading space 
+		trans_map.insert({key, value.substr(1)});
 		else
 			throw runtime_error("no rule for " + key);
 	return trans_map;
