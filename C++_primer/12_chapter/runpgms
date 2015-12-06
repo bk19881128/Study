@@ -1,0 +1,10 @@
+echo "querymain:" && ./querymain data/storyDataFile < data/Alice
+echo "allocPtr:" && ./allocPtr < data/alloc
+echo "allocSP:" && ./allocSP < data/alloc
+echo "usealloc:" && ./usealloc < data/storyDataFile
+
+../noinput oknew unique \
+		   UP usealloc2 useBlob weak
+
+# c++ 11 files:
+# ../noinput release
