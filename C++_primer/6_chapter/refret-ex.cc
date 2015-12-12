@@ -27,22 +27,22 @@
  * 	Fax: (201) 236-3290
 */ 
 
-#include <tr1/memory>
 #include <iostream>
-using std::tr1::weak_ptr; using std::tr1::shared_ptr;
+using std::cout; using std::endl;
 
-int main()
-{
-	shared_ptr<int> p(new int(42));
+// get returns a reference to an element in the given array
+int &get(int *arry, int index) { return arry[index]; }
 
-	weak_ptr<int> wp(p);  // wp weakly shares with p; use count in p is unchanged
+int main() {
+    int ia[10];  // array of ten uninitialized ints
 
-	p.reset(); // assuming p.unique() was true, the int is deleted
+    for (int i = 0; i != 10; ++i)
+        get(ia, i) = i;  // call get to assign values to the elements
 
-	if (shared_ptr<int> np = wp.lock()) { // true if np is not null
-		// inside the if, np shares its object with p
-		std::cout << "wp is not null" << std::endl;
-	}
-	else
-		std::cout << "wp is null" << std::endl;
+    for (int i = 0; i != 10; ++i)  // print the elements
+		cout << ia[i] << " ";
+
+	cout << endl;
+
+	return 0;
 }

@@ -27,22 +27,35 @@
  * 	Fax: (201) 236-3290
 */ 
 
-#include <tr1/memory>
 #include <iostream>
-using std::tr1::weak_ptr; using std::tr1::shared_ptr;
+using std::cin; using std::cout; using std::endl;
 
 int main()
 {
-	shared_ptr<int> p(new int(42));
+	do {
+		cout << "Guess a number between 0 and 9" << endl;
+		unsigned i, mynum = 7;
+		cin >> i;
 
-	weak_ptr<int> wp(p);  // wp weakly shares with p; use count in p is unchanged
+		if (i == mynum) {
+			cout << "Congrats you guessed right!" << endl;
+			break;
+		} else
+			if (i < mynum)
+				cout << "too low" << endl;
+			else
+				cout << "too high" << endl;
 
-	p.reset(); // assuming p.unique() was true, the int is deleted
+		if (i != mynum)
+			if (i < mynum)
+				cout << "too low" << endl;
+			else
+				cout << "too high" << endl;
+		else {
+			cout << "Congrats you guessed right!" << endl;
+			break;
+		}
+	} while (true);
 
-	if (shared_ptr<int> np = wp.lock()) { // true if np is not null
-		// inside the if, np shares its object with p
-		std::cout << "wp is not null" << std::endl;
-	}
-	else
-		std::cout << "wp is null" << std::endl;
+	return 0;
 }

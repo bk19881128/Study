@@ -1,12 +1,8 @@
-include ../../Makefile.inc
+include ../../../Makefile.inc
 
-TARGET = allocPtr allocSP \
-                  oknew querymain \
-                  unique UP \
-                  usealloc usealloc2 \
-                  useBlob weak release
+TARGET = share_ptr_test
 
-DIRS_TARGET =  1 6
+DIRS_TARGET = 
 
 all:$(TARGET) dir_build obj_clean
 
@@ -25,10 +21,6 @@ dir_build :
 dir_build_allgen :
 	@ for dir in ${DIRS_TARGET}; do (cd $${dir}; ${MAKE} allgen) ; done
 
-LOCFLAGS = -I../7_chapter -I../10_chapter    
-
-querymain: querymain.cc TextQuery.cc
-	$(CXX) -o $@ $^ ${CXXFLAGS} $(LOCFLAGS)
-
 % : %.cc
-	$(CXX) -o $@ $^ ${CXXFLAGS} $(LOCFLAGS)
+	$(CXX) -o $@ $^ ${CXXFLAGS}
+

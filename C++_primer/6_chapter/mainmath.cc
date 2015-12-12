@@ -27,22 +27,26 @@
  * 	Fax: (201) 236-3290
 */ 
 
-#include <tr1/memory>
+#include "LocalMath.h"
 #include <iostream>
-using std::tr1::weak_ptr; using std::tr1::shared_ptr;
+using std::cout; using std::endl;
 
 int main()
 {
-	shared_ptr<int> p(new int(42));
+	// pass a literal to fact
+    int f = fact(5);  // f equals 120, i.e., the result of fact(5)
+	cout << "5! is " << f << endl;
 
-	weak_ptr<int> wp(p);  // wp weakly shares with p; use count in p is unchanged
+    // call fact on i and print the result
+	int i = 5;
+    int j = fact(i);
+	cout << i << "! is " << j << endl;
 
-	p.reset(); // assuming p.unique() was true, the int is deleted
+	// call fact on a const int
+    const int ci = 3;
+    int k = fact(ci);   
+	cout << ci << "! is " << k << endl;
 
-	if (shared_ptr<int> np = wp.lock()) { // true if np is not null
-		// inside the if, np shares its object with p
-		std::cout << "wp is not null" << std::endl;
-	}
-	else
-		std::cout << "wp is null" << std::endl;
+    return 0;
 }
+

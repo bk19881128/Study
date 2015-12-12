@@ -27,22 +27,41 @@
  * 	Fax: (201) 236-3290
 */ 
 
-#include <tr1/memory>
 #include <iostream>
-using std::tr1::weak_ptr; using std::tr1::shared_ptr;
+using std::cin; using std::cout; using std::endl;
 
 int main()
 {
-	shared_ptr<int> p(new int(42));
+    // initialize counters for each vowel
+    unsigned aCnt = 0, eCnt = 0, iCnt = 0, oCnt = 0, uCnt = 0;
 
-	weak_ptr<int> wp(p);  // wp weakly shares with p; use count in p is unchanged
+    char ch;
+    while (cin >> ch) {
+    	// if ch is a vowel, increment the appropriate counter
+    	switch (ch) {
+    		case 'a':
+    			++aCnt;
+    			break;
+    		case 'e':
+    			++eCnt;
+    			break;
+    		case 'i':
+    			++iCnt;
+    			break;
+    		case 'o':
+    			++oCnt;
+    			break;
+    		case 'u':
+    			++uCnt;
+    			break;
+    	}
+    }
+    // print results
+    cout << "Number of vowel a: \t" << aCnt << '\n'
+         << "Number of vowel e: \t" << eCnt << '\n'
+         << "Number of vowel i: \t" << iCnt << '\n'
+         << "Number of vowel o: \t" << oCnt << '\n'
+         << "Number of vowel u: \t" << uCnt << endl;
 
-	p.reset(); // assuming p.unique() was true, the int is deleted
-
-	if (shared_ptr<int> np = wp.lock()) { // true if np is not null
-		// inside the if, np shares its object with p
-		std::cout << "wp is not null" << std::endl;
-	}
-	else
-		std::cout << "wp is null" << std::endl;
+    return 0;
 }

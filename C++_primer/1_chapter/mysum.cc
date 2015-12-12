@@ -27,22 +27,16 @@
  * 	Fax: (201) 236-3290
 */ 
 
-#include <tr1/memory>
-#include <iostream>
-using std::tr1::weak_ptr; using std::tr1::shared_ptr;
+#include <iostream> 
 
-int main()
+int main() 
 {
-	shared_ptr<int> p(new int(42));
+	int sum = 0, value = 0;
 
-	weak_ptr<int> wp(p);  // wp weakly shares with p; use count in p is unchanged
+	// read until end-of-file, calculating a running total of all values read
+	while (std::cin >> value) 
+		sum += value; // equivalent to sum = sum + value
 
-	p.reset(); // assuming p.unique() was true, the int is deleted
-
-	if (shared_ptr<int> np = wp.lock()) { // true if np is not null
-		// inside the if, np shares its object with p
-		std::cout << "wp is not null" << std::endl;
-	}
-	else
-		std::cout << "wp is null" << std::endl;
+	std::cout << "Sum is: " << sum << std::endl;
+	return 0;
 }

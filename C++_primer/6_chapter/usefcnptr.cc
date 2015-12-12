@@ -27,22 +27,45 @@
  * 	Fax: (201) 236-3290
 */ 
 
-#include <tr1/memory>
 #include <iostream>
-using std::tr1::weak_ptr; using std::tr1::shared_ptr;
+using std::cout; using std::endl;
 
-int main()
+#include <vector>
+using std::vector;
+
+// function to return minimum element in an vector of ints
+int min_element(vector<int>::iterator, 
+                vector<int>::iterator);
+
+// pointer to function, initialized to point to min_element
+int (*pf)(vector<int>::iterator, vector<int>::iterator) 
+        = min_element;
+
+int main() 
 {
-	shared_ptr<int> p(new int(42));
+    vector<int> ivec;
+    // give ivec some values
+    cout << "Direct call: "   
+         << min_element(ivec.begin(), ivec.end()) << endl;
 
-	weak_ptr<int> wp(p);  // wp weakly shares with p; use count in p is unchanged
+    cout << "Indirect call: " 
+         << pf(ivec.begin(), ivec.end()) << endl;
 
-	p.reset(); // assuming p.unique() was true, the int is deleted
+	cout << "equivalent indirect call: "
+	     << (*pf)(ivec.begin(), ivec.end()) << endl;
 
-	if (shared_ptr<int> np = wp.lock()) { // true if np is not null
-		// inside the if, np shares its object with p
-		std::cout << "wp is not null" << std::endl;
-	}
-	else
-		std::cout << "wp is null" << std::endl;
+    return 0;
 }
+
+// returns minimum element in an vector of ints
+int min_element(vector<int>::iterator beg, 
+                vector<int>::iterator end) {
+    int minVal = 0;
+    while (beg != end) {
+        if (minVal > *beg)
+            minVal = *beg;
+        ++beg;
+    }
+    return minVal;
+}
+

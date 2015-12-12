@@ -27,22 +27,38 @@
  * 	Fax: (201) 236-3290
 */ 
 
-#include <tr1/memory>
+#include <cstddef>
+using std::size_t;
+
+#include <vector>
+using std::vector;
+
 #include <iostream>
-using std::tr1::weak_ptr; using std::tr1::shared_ptr;
+using std::cin; using std::cout; using std::endl;
 
-int main()
+int main ()
 {
-	shared_ptr<int> p(new int(42));
-
-	weak_ptr<int> wp(p);  // wp weakly shares with p; use count in p is unchanged
-
-	p.reset(); // assuming p.unique() was true, the int is deleted
-
-	if (shared_ptr<int> np = wp.lock()) { // true if np is not null
-		// inside the if, np shares its object with p
-		std::cout << "wp is not null" << std::endl;
+	vector<unsigned> grades;
+	// count the number of grades by clusters of ten: 
+	// 0--9, 10--19, . . . 90--99, 100
+	const size_t sz = 11;
+	unsigned scores[sz] = {};  // 11 buckets, all value initialized to 0
+	unsigned grade;
+	while (cin >> grade) {
+		if (grade <= 100)
+			// increment the counter for the current cluster
+			++scores[grade/10]; 
+		grades.push_back(grade);
 	}
-	else
-		std::cout << "wp is null" << std::endl;
+	cout << "grades.size = " << grades.size() << endl;
+
+	// for every element in grades
+	for (vector<unsigned>::const_iterator g = grades.begin(); g != grades.end(); ++g)  
+		cout << *g << " " ;
+	cout << endl;
+
+	// for each counter in scores
+	for (size_t i = 0; i != sz; ++i)
+		cout << scores[i] << " ";       // print the value of that counter
+	cout << endl;
 }

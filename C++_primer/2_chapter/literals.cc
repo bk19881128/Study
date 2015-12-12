@@ -27,22 +27,24 @@
  * 	Fax: (201) 236-3290
 */ 
 
-#include <tr1/memory>
 #include <iostream>
-using std::tr1::weak_ptr; using std::tr1::shared_ptr;
-
-int main()
+int main() 
 {
-	shared_ptr<int> p(new int(42));
+	std::cout << "Hello World!";  // simple character string literal
+	std::cout << "";              // empty character string literal
+	// literal using newlines and tabs
+	std::cout << "\nCC\toptions\tfile.[cC]\n";
 
-	weak_ptr<int> wp(p);  // wp weakly shares with p; use count in p is unchanged
+    // multiline string literal
+    std::cout << "a really, really long string literal "
+	             "that spans two lines" << std::endl;
 
-	p.reset(); // assuming p.unique() was true, the int is deleted
+	// three ways to print a capital M
+	std::cout << 'M' << " " << '\115' << " " << '\x4d' << std::endl;
 
-	if (shared_ptr<int> np = wp.lock()) { // true if np is not null
-		// inside the if, np shares its object with p
-		std::cout << "wp is not null" << std::endl;
-	}
-	else
-		std::cout << "wp is null" << std::endl;
+    unsigned long long bigVal = -1ULL;
+    std::cout << bigVal << std::endl;
+
+    return 0;
 }
+

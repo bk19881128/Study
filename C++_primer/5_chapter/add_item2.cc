@@ -27,22 +27,39 @@
  * 	Fax: (201) 236-3290
 */ 
 
-#include <tr1/memory>
+#include <stdexcept>
+using std::runtime_error;
+
 #include <iostream>
-using std::tr1::weak_ptr; using std::tr1::shared_ptr;
+using std::cin; using std::cout; using std::endl;
 
-int main()
+#include "Sales_item.h"
+
+int main() 
 {
-	shared_ptr<int> p(new int(42));
-
-	weak_ptr<int> wp(p);  // wp weakly shares with p; use count in p is unchanged
-
-	p.reset(); // assuming p.unique() was true, the int is deleted
-
-	if (shared_ptr<int> np = wp.lock()) { // true if np is not null
-		// inside the if, np shares its object with p
-		std::cout << "wp is not null" << std::endl;
-	}
-	else
-		std::cout << "wp is null" << std::endl;
+	Sales_item item1, item2;
+	
+	while (cin >> item1 >> item2) {
+	    try {
+	        // execute code that will add the two Sales_items
+	        // if the addition fails, the code throws a runtime_error exception
+	        // first check that the data are for the same item 
+	        if (item1.isbn() != item2.isbn())
+	            throw runtime_error("Data must refer to same ISBN");
+	
+	        // if we're still here, the ISBNs are the same
+	        cout << item1 + item2 << endl;
+	    } catch (runtime_error err) {
+	        // remind the user that the ISBNs must match 
+			// and prompt for another pair
+	        cout << err.what() 
+	             << "\nTry Again?  Enter y or n" << endl;
+	        char c;
+	        cin >> c;
+	        if (!cin || c == 'n')
+	            break;      // break out of the while loop
+	    }  // ends the catch clause
+	}  // ends the while loop
+	
+	return 0;   // indicate success
 }

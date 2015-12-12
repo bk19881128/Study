@@ -1,0 +1,6 @@
+echo "cond:" && ./cond < data/vecSubs
+
+../noinput arith-ex arraysizeof \
+		   incr int-div oofe overflow \
+		   prec shift-prec sizeof_pgm \
+		   unaryOps vec_init warn_dbltoint

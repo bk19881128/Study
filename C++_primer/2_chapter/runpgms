@@ -1,0 +1,9 @@
+echo "Sales_data:" && ./Sales_data < data/add_item
+
+../noinput compounddecls convs dbl_ptr \
+		   escape inits \
+		   literals ref-ex \
+		   scope_levels unsigned
+
+# c++ 11 files:
+# ../noinput decl-ex 

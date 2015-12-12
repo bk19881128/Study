@@ -27,22 +27,12 @@
  * 	Fax: (201) 236-3290
 */ 
 
-#include <tr1/memory>
-#include <iostream>
-using std::tr1::weak_ptr; using std::tr1::shared_ptr;
+// not included in book text, but used by programs in this directory
+#ifndef LOCALMATH_H
+#define LOCALMATH_H
 
-int main()
-{
-	shared_ptr<int> p(new int(42));
-
-	weak_ptr<int> wp(p);  // wp weakly shares with p; use count in p is unchanged
-
-	p.reset(); // assuming p.unique() was true, the int is deleted
-
-	if (shared_ptr<int> np = wp.lock()) { // true if np is not null
-		// inside the if, np shares its object with p
-		std::cout << "wp is not null" << std::endl;
-	}
-	else
-		std::cout << "wp is null" << std::endl;
-}
+//definition in LocalMath.cc
+int fact(int);        // iterative definition of factorial
+int factorial(int);   // recrusive version of factorial
+int gcd(int, int);    // find greatest common divisor
+#endif

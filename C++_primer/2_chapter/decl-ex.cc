@@ -27,22 +27,31 @@
  * 	Fax: (201) 236-3290
 */ 
 
-#include <tr1/memory>
+// This file illustrates delctype, which is a C++ 11 feature.
+// Many compilers implemented both auto and decltype before
+// the standard was ratified, so it is possible that your compiler
+// supports decltype.  Try compiling this file to see if it does.
+
 #include <iostream>
-using std::tr1::weak_ptr; using std::tr1::shared_ptr;
+using std::cout; using std::endl;
 
 int main()
 {
-	shared_ptr<int> p(new int(42));
-
-	weak_ptr<int> wp(p);  // wp weakly shares with p; use count in p is unchanged
-
-	p.reset(); // assuming p.unique() was true, the int is deleted
-
-	if (shared_ptr<int> np = wp.lock()) { // true if np is not null
-		// inside the if, np shares its object with p
-		std::cout << "wp is not null" << std::endl;
-	}
-	else
-		std::cout << "wp is null" << std::endl;
+	int a = 0;
+	decltype(a) c = a;   // c is an int
+	decltype((a)) d = a; // d is a reference to a
+	++c;                 // increments c, a (and d) unchanged
+	cout << "a: " << a << " c: " << c << " d: " << d << endl;
+	++d;                 // increments a through the reference d
+	cout << "a: " << a << " c: " << c << " d: " << d << endl;
+	
+	int A = 0, B = 0;
+	decltype((A)) C = A;   // C is a reference to A
+	decltype(A = B) D = A; // D is also a reference to A
+	++C;
+	cout << "A: " << A << " C: " << C << " D: " << D << endl;
+	++D;
+	cout << "A: " << A << " C: " << C << " D: " << D << endl;
+	
+	return 0;
 }

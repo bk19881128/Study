@@ -27,22 +27,46 @@
  * 	Fax: (201) 236-3290
 */ 
 
-#include <tr1/memory>
-#include <iostream>
-using std::tr1::weak_ptr; using std::tr1::shared_ptr;
+#include <cstddef>
+using std::size_t;
+
+#include <cassert>
+// assert is a preprocessor macro and therefore not in std
+// hence we need to include cassert header, 
+// but no using declaration for assert 
+
+#include <string> 
+using std::string;
+
+#include <iostream> 
+using std::endl; using std::cerr; using std::cin;
+
+#include <cstddef>
+using std::size_t;
+
+void print(const int ia[], size_t size)
+{
+#ifndef NDEBUG
+// __func__ is a local static defined by the compiler that holds the name of this function
+cerr << "print(int*, size_t)" << ": array size is " << size << endl;
+#endif
+// . . .
+}
 
 int main()
 {
-	shared_ptr<int> p(new int(42));
+    string word = "foo";
+    const string::size_type threshold = 5;
+    if (word.size() < threshold) 
+        cerr << "Error: " << __FILE__
+             << " : in function " << __func__ 
+             << " at line " << __LINE__ << endl
+             << "       Compiled on " << __DATE__ 
+             << " at " << __TIME__ << endl
+             << "       Word read was \"" << word 
+             << "\":  Length too short" << endl;
+    word = "something longer than five chars";
+    assert(word.size() > threshold);
 
-	weak_ptr<int> wp(p);  // wp weakly shares with p; use count in p is unchanged
-
-	p.reset(); // assuming p.unique() was true, the int is deleted
-
-	if (shared_ptr<int> np = wp.lock()) { // true if np is not null
-		// inside the if, np shares its object with p
-		std::cout << "wp is not null" << std::endl;
-	}
-	else
-		std::cout << "wp is null" << std::endl;
+    return 0;
 }

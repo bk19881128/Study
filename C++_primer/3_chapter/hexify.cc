@@ -27,22 +27,30 @@
  * 	Fax: (201) 236-3290
 */ 
 
-#include <tr1/memory>
 #include <iostream>
-using std::tr1::weak_ptr; using std::tr1::shared_ptr;
+using std::cin; using std::cout; using std::endl;
+
+#include <string>
+using std::string;
+
+#include <cstddef>
+using std::size_t;
 
 int main()
 {
-	shared_ptr<int> p(new int(42));
+	const string hexdigits = "0123456789ABCDEF";  // possible hex digits
 
-	weak_ptr<int> wp(p);  // wp weakly shares with p; use count in p is unchanged
+	cout << "Enter a series of numbers between 0 and 15"
+	     << " separated by spaces.  Hit ENTER when finished: " 
+	     << endl;
+	string result;        // will hold the resulting hexify'd string
 
-	p.reset(); // assuming p.unique() was true, the int is deleted
+	string::size_type n;  // hold numbers from the input
+	while (cin >> n)
+		if (n < hexdigits.size())    // ignore invalid input
+			result += hexdigits[n];  // fetch the indicated hex digit
 
-	if (shared_ptr<int> np = wp.lock()) { // true if np is not null
-		// inside the if, np shares its object with p
-		std::cout << "wp is not null" << std::endl;
-	}
-	else
-		std::cout << "wp is null" << std::endl;
+	cout << "Your hex number is: " << result << endl;
+
+	return 0;
 }

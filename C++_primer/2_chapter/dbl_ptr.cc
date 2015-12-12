@@ -27,22 +27,28 @@
  * 	Fax: (201) 236-3290
 */ 
 
-#include <tr1/memory>
 #include <iostream>
-using std::tr1::weak_ptr; using std::tr1::shared_ptr;
+using std::cout;
+using std::endl;
 
 int main()
 {
-	shared_ptr<int> p(new int(42));
+    int ival = 1024;
+    int *pi = &ival;   // pi points to an int
+    int **ppi = &pi;   // ppi points to a pointer to an int
+    cout << "The value of ival\n"
+         << "direct value: " << ival << "\n"
+         << "indirect value: " << *pi << "\n"
+         << "doubly indirect value: " << **ppi
+         << endl;
 
-	weak_ptr<int> wp(p);  // wp weakly shares with p; use count in p is unchanged
+	int i = 2; 
+	int *p1 = &i;     // p1 points to i
+	*p1 = *p1 * *p1;  // equivalent to i = i * i
+	cout << "i  = " << i << endl;
 
-	p.reset(); // assuming p.unique() was true, the int is deleted
+	*p1 *= *p1;       // equivalent to i *= i
+	cout << "i  = " << i << endl;
 
-	if (shared_ptr<int> np = wp.lock()) { // true if np is not null
-		// inside the if, np shares its object with p
-		std::cout << "wp is not null" << std::endl;
-	}
-	else
-		std::cout << "wp is null" << std::endl;
+	return 0;
 }

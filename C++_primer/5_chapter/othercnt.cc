@@ -27,22 +27,30 @@
  * 	Fax: (201) 236-3290
 */ 
 
-#include <tr1/memory>
 #include <iostream>
-using std::tr1::weak_ptr; using std::tr1::shared_ptr;
+using std::cin; using std::cout; using std::endl;
 
 int main()
 {
-	shared_ptr<int> p(new int(42));
+    char ch;
+    // initialize counters for each vowel
+    unsigned vowelCnt = 0;
+    unsigned otherCnt = 0;  // count anything that isn't a vowel
 
-	weak_ptr<int> wp(p);  // wp weakly shares with p; use count in p is unchanged
+    while (cin >> ch) {
+        // if ch is a vowel, increment the appropriate counter
+        switch (ch) {
+			case 'a': case 'e': case 'i': case 'o': case 'u':
+				++vowelCnt;
+				break;
+            default:
+                ++otherCnt;
+                break;
+        }
+    }
+    // print results
+    cout << "Number of vowels: \t" << vowelCnt << '\n'
+         << "Total non-vowels : \t" << otherCnt << '\n';
 
-	p.reset(); // assuming p.unique() was true, the int is deleted
-
-	if (shared_ptr<int> np = wp.lock()) { // true if np is not null
-		// inside the if, np shares its object with p
-		std::cout << "wp is not null" << std::endl;
-	}
-	else
-		std::cout << "wp is null" << std::endl;
+    return 0;
 }

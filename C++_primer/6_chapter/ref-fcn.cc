@@ -27,22 +27,25 @@
  * 	Fax: (201) 236-3290
 */ 
 
-#include <tr1/memory>
 #include <iostream>
-using std::tr1::weak_ptr; using std::tr1::shared_ptr;
+using std::cout; using std::endl;
 
-int main()
+#include <string>
+using std::string;
+
+char &get_val(string &str, string::size_type ix) 
 {
-	shared_ptr<int> p(new int(42));
-
-	weak_ptr<int> wp(p);  // wp weakly shares with p; use count in p is unchanged
-
-	p.reset(); // assuming p.unique() was true, the int is deleted
-
-	if (shared_ptr<int> np = wp.lock()) { // true if np is not null
-		// inside the if, np shares its object with p
-		std::cout << "wp is not null" << std::endl;
-	}
-	else
-		std::cout << "wp is null" << std::endl;
+    return str[ix]; // get_val assumes the given index is valid
 }
+
+int main() 
+{
+    string s("a value");
+    cout << s << endl;   // prints a value
+
+    get_val(s, 0) = 'A'; // changes s[0] to A
+    cout << s << endl;   // prints A value
+
+    return 0;
+}
+

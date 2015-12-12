@@ -1,0 +1,12 @@
+echo "mainmath:" && ./mainmath < data/mainmath
+echo "refparms:" && ./refparms < data/refparms
+
+../noinput arrRet count-calls \
+		   fact fcnptrRet \
+		   good_printmain inline_shorter \
+		   mainret mk_plural \
+		   ref-fcn refret-ex  reset \
+		   stl-arr-fcns usefcnptr wdebug
+
+# c++ 11 files:
+# ../noinput errMsg_initList

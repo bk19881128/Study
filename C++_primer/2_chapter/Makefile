@@ -1,12 +1,11 @@
 include ../../Makefile.inc
 
-TARGET = allocPtr allocSP \
-                  oknew querymain \
-                  unique UP \
-                  usealloc usealloc2 \
-                  useBlob weak release
+TARGET = compounddecls convs dbl_ptr \
+                  escape inits \
+                  literals ref-ex Sales_data \
+                  scope_levels unsigned decl-ex
 
-DIRS_TARGET =  1 6
+#DIRS_TARGET = 1 3 5 6 9 12 13 14 16 17 21 22 27 28 29 30 33 34
 
 all:$(TARGET) dir_build obj_clean
 
@@ -25,10 +24,7 @@ dir_build :
 dir_build_allgen :
 	@ for dir in ${DIRS_TARGET}; do (cd $${dir}; ${MAKE} allgen) ; done
 
-LOCFLAGS = -I../7_chapter -I../10_chapter    
-
-querymain: querymain.cc TextQuery.cc
-	$(CXX) -o $@ $^ ${CXXFLAGS} $(LOCFLAGS)
-
+LOCFLAGS = -I../1_chapter
+    
 % : %.cc
-	$(CXX) -o $@ $^ ${CXXFLAGS} $(LOCFLAGS)
+	$(CXX) -o $@ $^ ${CXXFLAGS} ${LOCFLAGS}

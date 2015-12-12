@@ -27,22 +27,35 @@
  * 	Fax: (201) 236-3290
 */ 
 
-#include <tr1/memory>
 #include <iostream>
-using std::tr1::weak_ptr; using std::tr1::shared_ptr;
+using std::cout; using std::endl;
 
 int main()
 {
-	shared_ptr<int> p(new int(42));
+	int grade = 75;
+	cout << ((grade < 60) ?  "fail" : "pass"); // prints pass or fail
+	cout << endl;
 
-	weak_ptr<int> wp(p);  // wp weakly shares with p; use count in p is unchanged
+	cout << (grade < 60) ?  "fail" : "pass";   // prints 1 or 0!
+	cout << endl;
 
-	p.reset(); // assuming p.unique() was true, the int is deleted
+	// previous expression is equivalent to the following
+	cout << (grade < 60);    // prints 1 or 0
+	cout ?  "fail" : "pass"; // test cout and then yield one of the two literals
+	                         // depending on whether cout is true or false
+	cout << endl;
+	int i = 15, j = 20;
+	cout << (i < j ? i : j);  // ok: prints smaller of i and j
+	cout << endl;
 
-	if (shared_ptr<int> np = wp.lock()) { // true if np is not null
-		// inside the if, np shares its object with p
-		std::cout << "wp is not null" << std::endl;
-	}
-	else
-		std::cout << "wp is null" << std::endl;
+	cout << (i < j) ? i : j;  // ok: prints 1 or 0!
+	cout << endl;
+	
+	// previous expression is equivalent to the following
+	cout << (i < j); // prints 1 or 0
+	cout ? i : j;    // test cout and then evaluate i or j
+	                 // depending on whether cout evaluates to true or false
+	cout << endl;
+
+	return 0;
 }

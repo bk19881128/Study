@@ -27,22 +27,21 @@
  * 	Fax: (201) 236-3290
 */ 
 
-#include <tr1/memory>
 #include <iostream>
-using std::tr1::weak_ptr; using std::tr1::shared_ptr;
+
+// using declarations for names from the standard library
+using std::cin;
+using std::cout; using std::endl;
 
 int main()
 {
-	shared_ptr<int> p(new int(42));
+	cout << "Enter two numbers:" << endl;
 
-	weak_ptr<int> wp(p);  // wp weakly shares with p; use count in p is unchanged
+	int v1, v2;
+	cin >> v1 >> v2;
 
-	p.reset(); // assuming p.unique() was true, the int is deleted
+	cout << "The sum of " << v1 << " and " << v2
+	     << " is " << v1 + v2 << endl;
 
-	if (shared_ptr<int> np = wp.lock()) { // true if np is not null
-		// inside the if, np shares its object with p
-		std::cout << "wp is not null" << std::endl;
-	}
-	else
-		std::cout << "wp is null" << std::endl;
+	return 0;
 }

@@ -27,22 +27,25 @@
  * 	Fax: (201) 236-3290
 */ 
 
-#include <tr1/memory>
 #include <iostream>
-using std::tr1::weak_ptr; using std::tr1::shared_ptr;
+using std::cout; using std::endl;
 
-int main()
+#include <string>
+using std::string;
+
+int main() 
 {
-	shared_ptr<int> p(new int(42));
 
-	weak_ptr<int> wp(p);  // wp weakly shares with p; use count in p is unchanged
+	string s1  = "hello, ", s2 = "world\n";
+	string s3 = s1 + s2;   // s3 is hello, world\n
+	cout << s1 << s2 << s3 << endl;
 
-	p.reset(); // assuming p.unique() was true, the int is deleted
-
-	if (shared_ptr<int> np = wp.lock()) { // true if np is not null
-		// inside the if, np shares its object with p
-		std::cout << "wp is not null" << std::endl;
-	}
-	else
-		std::cout << "wp is null" << std::endl;
+	s1 += s2;   // equivalent to s1 = s1 + s2
+	cout << s1;
+	
+	string s4 = "hello", s5 = "world";  // no punctuation in s4 or s2
+	string s6 = s4 + ", " + s5 + '\n';
+	cout << s4 << s5 << "\n" << s6 << endl;
+	
+	return 0;
 }

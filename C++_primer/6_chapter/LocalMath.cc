@@ -27,22 +27,35 @@
  * 	Fax: (201) 236-3290
 */ 
 
-#include <tr1/memory>
-#include <iostream>
-using std::tr1::weak_ptr; using std::tr1::shared_ptr;
+#include "LocalMath.h"
 
-int main()
+// return the greatest common divisor
+int gcd(int v1, int v2)
 {
-	shared_ptr<int> p(new int(42));
-
-	weak_ptr<int> wp(p);  // wp weakly shares with p; use count in p is unchanged
-
-	p.reset(); // assuming p.unique() was true, the int is deleted
-
-	if (shared_ptr<int> np = wp.lock()) { // true if np is not null
-		// inside the if, np shares its object with p
-		std::cout << "wp is not null" << std::endl;
-	}
-	else
-		std::cout << "wp is null" << std::endl;
+    while (v2) {
+        int temp = v2;
+        v2 = v1 % v2;
+        v1 = temp;
+    }
+    return v1;
 }
+
+
+// factorial of val is val * (val - 1) *  (val - 2) . . . * ((val -  (val - 1)) * 1)
+int fact(int val)
+{
+	int ret = 1; // local variable to hold the result as we calculate it
+	while (val > 1) 
+		ret *= val--;  // assign ret * val to ret and decrement val
+	return ret;        // return the result
+}
+
+// recursive version of factorial:
+// calculate val!, which is 1 * 2 * 3 . . . * val
+int factorial(int val)
+{
+    if (val > 1)
+        return factorial(val-1) * val;
+    return 1;
+}
+

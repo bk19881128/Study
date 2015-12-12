@@ -27,22 +27,16 @@
  * 	Fax: (201) 236-3290
 */ 
 
-#include <tr1/memory>
-#include <iostream>
-using std::tr1::weak_ptr; using std::tr1::shared_ptr;
-
+#include <cstdlib>
+/* EXIT_FAILURE and EXIT_SUCCESS are preprocessor variables
+ *       such variables are not in the std namespace, 
+ *       hence, no using declaration and no std:: when we use these names
+*/
 int main()
 {
-	shared_ptr<int> p(new int(42));
-
-	weak_ptr<int> wp(p);  // wp weakly shares with p; use count in p is unchanged
-
-	p.reset(); // assuming p.unique() was true, the int is deleted
-
-	if (shared_ptr<int> np = wp.lock()) { // true if np is not null
-		// inside the if, np shares its object with p
-		std::cout << "wp is not null" << std::endl;
-	}
-	else
-		std::cout << "wp is null" << std::endl;
+    bool some_failure = false;
+    if (some_failure)
+        return EXIT_FAILURE;  // defined in cstdlib
+    else
+        return EXIT_SUCCESS;  // defined in cstdlib
 }

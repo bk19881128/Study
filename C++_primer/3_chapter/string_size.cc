@@ -27,22 +27,19 @@
  * 	Fax: (201) 236-3290
 */ 
 
-#include <tr1/memory>
+#include <string>
+using std::string;
+
 #include <iostream>
-using std::tr1::weak_ptr; using std::tr1::shared_ptr;
+using std::cout; using std::endl;
+
+string st1;       // empty string
+string st2(st1);  // st2 is a copy of st1
 
 int main()
 {
-	shared_ptr<int> p(new int(42));
-
-	weak_ptr<int> wp(p);  // wp weakly shares with p; use count in p is unchanged
-
-	p.reset(); // assuming p.unique() was true, the int is deleted
-
-	if (shared_ptr<int> np = wp.lock()) { // true if np is not null
-		// inside the if, np shares its object with p
-		std::cout << "wp is not null" << std::endl;
-	}
-	else
-		std::cout << "wp is null" << std::endl;
+    string st("The expense of spirit\n");
+    cout << "The size of " << st << "is " << st.size()
+         << " characters, including the newline" << endl;
+    return 0;
 }

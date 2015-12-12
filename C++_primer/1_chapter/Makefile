@@ -1,12 +1,10 @@
 include ../../Makefile.inc
 
-TARGET = allocPtr allocSP \
-                  oknew querymain \
-                  unique UP \
-                  usealloc usealloc2 \
-                  useBlob weak release
+TARGET = add add_item add_item2 avg_price \
+                  for_ex forcount item_io \
+                  main_only mysum occurs whilecount
 
-DIRS_TARGET =  1 6
+#DIRS_TARGET = 1 3 5 6 9 12 13 14 16 17 21 22 27 28 29 30 33 34
 
 all:$(TARGET) dir_build obj_clean
 
@@ -24,11 +22,7 @@ dir_build :
 
 dir_build_allgen :
 	@ for dir in ${DIRS_TARGET}; do (cd $${dir}; ${MAKE} allgen) ; done
-
-LOCFLAGS = -I../7_chapter -I../10_chapter    
-
-querymain: querymain.cc TextQuery.cc
-	$(CXX) -o $@ $^ ${CXXFLAGS} $(LOCFLAGS)
+    
 
 % : %.cc
-	$(CXX) -o $@ $^ ${CXXFLAGS} $(LOCFLAGS)
+	$(CXX) -o $@ $^ ${CXXFLAGS}

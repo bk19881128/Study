@@ -27,22 +27,46 @@
  * 	Fax: (201) 236-3290
 */ 
 
-#include <tr1/memory>
+#include <cstddef>
+using std::size_t; 
+
 #include <iostream>
-using std::tr1::weak_ptr; using std::tr1::shared_ptr;
+using std::cin; using std::cout; using std::endl;
 
 int main()
 {
-	shared_ptr<int> p(new int(42));
+	int ia[] = {0,1,2,3,4,5,6,7,8,9};
 
-	weak_ptr<int> wp(p);  // wp weakly shares with p; use count in p is unchanged
+	int *p = ia; // p points to the first element in ia
+	++p;           // p points to ia[1]
 
-	p.reset(); // assuming p.unique() was true, the int is deleted
+	int *e = &ia[10]; // pointer just past the last element in ia
+	for (int *b = ia; b != e; ++b)
+		cout << *b << " "; // print the elements in ia
+	cout << endl;
 
-	if (shared_ptr<int> np = wp.lock()) { // true if np is not null
-		// inside the if, np shares its object with p
-		std::cout << "wp is not null" << std::endl;
-	}
+	const size_t sz = 10;
+	int arr[sz];  // array of 10 ints
+
+	for (size_t n = 0; n != sz; ++n) // for each element in arr
+		cin >> arr[n];  // read values from the standard input
+
+	for (size_t i = 0; i != sz; ++i)
+		cout << arr[i] << " ";
+	cout << endl;
+
+	// pbeg points to the first and 
+	// pend points just past the last element in arr
+	int *pbeg = arr,  *pend = arr + sz;
+
+	// find the first negative element, 
+	// stopping if we've seen all the elements
+	while (pbeg != pend && *pbeg >= 0)
+		++pbeg;
+	if (pbeg == pend)
+		cout << "no negative elements in arr" << endl;
 	else
-		std::cout << "wp is null" << std::endl;
+		cout << "first negative number was " << *pbeg << endl;
+	return 0;
 }
+

@@ -27,22 +27,40 @@
  * 	Fax: (201) 236-3290
 */ 
 
-#include <tr1/memory>
+#include <cstddef>
+using std::size_t;
+
+#include <vector>
+using std::vector;
+
 #include <iostream>
-using std::tr1::weak_ptr; using std::tr1::shared_ptr;
+using std::cout; using std::endl;
 
 int main()
 {
-	shared_ptr<int> p(new int(42));
+    
+    vector<int> ivec;                // empty vector
+    int cnt = 10;
+    // add elements 10 . . . 1 to ivec
+    while (cnt > 0)
+        ivec.push_back(cnt--);       // int postfix decrement
 
-	weak_ptr<int> wp(p);  // wp weakly shares with p; use count in p is unchanged
+    vector<int>::const_iterator iter = ivec.begin();
+    // prints 10 9 8 . . . 1 
+    while (iter != ivec.end())
+        cout << *iter++ << endl; // iterator postfix increment
 
-	p.reset(); // assuming p.unique() was true, the int is deleted
+	vector<int> vec2(10, 0);  // ten elements initially all 0
+    cnt = vec2.size();
+    // assign values from size . . . 1 to the elements in vec2
+    for(vector<int>::size_type ix = 0; 
+                    ix != vec2.size(); ++ix, --cnt)   
+        vec2[ix] = cnt;
 
-	if (shared_ptr<int> np = wp.lock()) { // true if np is not null
-		// inside the if, np shares its object with p
-		std::cout << "wp is not null" << std::endl;
-	}
-	else
-		std::cout << "wp is null" << std::endl;
+    iter = vec2.begin();
+    // prints 10 9 8 . . . 1 
+    while (iter != vec2.end())
+        cout << *iter++ << endl; // iterator postfix increment
+
+    return 0;
 }

@@ -27,22 +27,42 @@
  * 	Fax: (201) 236-3290
 */ 
 
-#include <tr1/memory>
 #include <iostream>
-using std::tr1::weak_ptr; using std::tr1::shared_ptr;
+using std::cout; using std::endl;
 
-int main()
+#include <vector>
+using std::vector;
+
+// function that takes a reference to an int 
+// and sets the given object to zero
+// i is just another name for the object passed to reset
+void reset(int &i)  
 {
-	shared_ptr<int> p(new int(42));
+    i = 0;  // changes the value of the object to which i refers
+}
 
-	weak_ptr<int> wp(p);  // wp weakly shares with p; use count in p is unchanged
+// function that takes a pointer 
+// and sets the pointed-to value to zero
+void reset(int *ip)
+{
+    *ip = 0;  // changes the value of the object to which ip points
+    ip = 0;   // changes the local copy of ip; the argument is unchanged
+}
 
-	p.reset(); // assuming p.unique() was true, the int is deleted
+int main() 
+{
+	int j = 42;
+	reset(j);  // j is passed by reference; the value in j is changed
+	cout << "j = " << j  << endl;  // prints j = 0
 
-	if (shared_ptr<int> np = wp.lock()) { // true if np is not null
-		// inside the if, np shares its object with p
-		std::cout << "wp is not null" << std::endl;
-	}
-	else
-		std::cout << "wp is null" << std::endl;
+	j = 42;    // restore the original value of j
+	reset(&j);                     // changes j but not the address of j
+	cout << "j = "  << j << endl;  // prints j = 0
+
+	j = 42;    // restore the original value of j
+	int *p = &j;
+	reset(p); // changes object to which p points not the address in p
+	cout << "j = "  << *p << endl;  // prints j = 0
+
+    return 0;
 }

@@ -27,22 +27,17 @@
  * 	Fax: (201) 236-3290
 */ 
 
-#include <tr1/memory>
 #include <iostream>
-using std::tr1::weak_ptr; using std::tr1::shared_ptr;
+#include "Sales_item.h"
 
-int main()
+int main() 
 {
-	shared_ptr<int> p(new int(42));
+    Sales_item book;
 
-	weak_ptr<int> wp(p);  // wp weakly shares with p; use count in p is unchanged
+    // read ISBN, number of copies sold, and sales price
+    std::cin >> book;
+    // write ISBN, number of copies sold, total revenue, and average price
+    std::cout << book << std::endl;
 
-	p.reset(); // assuming p.unique() was true, the int is deleted
-
-	if (shared_ptr<int> np = wp.lock()) { // true if np is not null
-		// inside the if, np shares its object with p
-		std::cout << "wp is not null" << std::endl;
-	}
-	else
-		std::cout << "wp is null" << std::endl;
+    return 0;
 }

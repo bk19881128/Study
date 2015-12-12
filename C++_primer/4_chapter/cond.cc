@@ -27,22 +27,33 @@
  * 	Fax: (201) 236-3290
 */ 
 
-#include <tr1/memory>
 #include <iostream>
-using std::tr1::weak_ptr; using std::tr1::shared_ptr;
+using std::cin; using std::cout; using std::endl;
+
+#include <string>
+using std::string;
+
+#include <vector>
+using std::vector;
+
+vector<unsigned> grades;
 
 int main()
 {
-	shared_ptr<int> p(new int(42));
+	unsigned i;
+	while (cin >> i)
+		grades.push_back(i);
 
-	weak_ptr<int> wp(p);  // wp weakly shares with p; use count in p is unchanged
+	for (vector<unsigned>::const_iterator grade = grades.begin();
+			grade != grades.end(); ++grade) {  
+		// set the initial grade as pass or fail
+		string finalgrade = (*grade < 60) ?  "fail" : "pass";
 
-	p.reset(); // assuming p.unique() was true, the int is deleted
+		finalgrade = (*grade > 90) ? "high pass"
+				                  : (*grade < 60) ? "fail" : "pass";
 
-	if (shared_ptr<int> np = wp.lock()) { // true if np is not null
-		// inside the if, np shares its object with p
-		std::cout << "wp is not null" << std::endl;
+		cout << *grade << " " + finalgrade << endl;
 	}
-	else
-		std::cout << "wp is null" << std::endl;
+
+	return 0;
 }

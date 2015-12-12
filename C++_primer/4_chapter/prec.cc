@@ -27,22 +27,26 @@
  * 	Fax: (201) 236-3290
 */ 
 
-#include <tr1/memory>
 #include <iostream>
-using std::tr1::weak_ptr; using std::tr1::shared_ptr;
+using std::cout; using std::endl;
 
-int main()
+int main() 
 {
-	shared_ptr<int> p(new int(42));
+	cout << 6 + 3 * 4 / 2 + 2 << endl;
 
-	weak_ptr<int> wp(p);  // wp weakly shares with p; use count in p is unchanged
+	// parentheses in this expression match default precedence and associativity
+	cout << ((6 + ((3 * 4) / 2)) + 2) << endl; // prints 14
 
-	p.reset(); // assuming p.unique() was true, the int is deleted
+	int temp = 3 * 4;         // 12
+	int temp2 = temp / 2;     // 6
+	int temp3 = temp2 + 6;    // 12
+	int result = temp3 + 2;   // 14
+	cout << result << endl;
 
-	if (shared_ptr<int> np = wp.lock()) { // true if np is not null
-		// inside the if, np shares its object with p
-		std::cout << "wp is not null" << std::endl;
-	}
-	else
-		std::cout << "wp is null" << std::endl;
+	// parentheses result in alternative groupings
+	cout << (6 + 3) * (4 / 2 + 2) << endl;     // prints 36
+	cout << ((6 + 3) * 4) / 2 + 2 << endl;     // prints 20
+	cout << 6 + 3 * 4 / (2 + 2) << endl;       // prints 9
+
+    return 0;
 }

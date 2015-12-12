@@ -27,22 +27,32 @@
  * 	Fax: (201) 236-3290
 */ 
 
-#include <tr1/memory>
 #include <iostream>
-using std::tr1::weak_ptr; using std::tr1::shared_ptr;
+using std::cin; using std::cout; using std::endl;
+
+#include <vector>
+using std::vector; 
+
+#include <string>
+using std::string;
 
 int main()
 {
-	shared_ptr<int> p(new int(42));
+	vector<string> text;     // holds the input
 
-	weak_ptr<int> wp(p);  // wp weakly shares with p; use count in p is unchanged
+	string s;
+	while (getline(cin, s))  // read the entire input file
+		text.push_back(s);   // storing each line as an element in text
+	cout << "text.size: " << text.size() << endl;
 
-	p.reset(); // assuming p.unique() was true, the int is deleted
+	// print each line in text up to the first blank line
+	for (vector<string>::const_iterator it = text.begin(); 
+	     it != text.end() && !(*it).empty(); ++it) 
+		cout << *it << endl;
 
-	if (shared_ptr<int> np = wp.lock()) { // true if np is not null
-		// inside the if, np shares its object with p
-		std::cout << "wp is not null" << std::endl;
-	}
-	else
-		std::cout << "wp is null" << std::endl;
+	// equivalent loop using arrow to dereference it and call empty
+	for (vector<string>::const_iterator it = text.begin(); 
+	     it != text.end() && !it->empty(); ++it) 
+		cout << *it << endl;
 }
+		

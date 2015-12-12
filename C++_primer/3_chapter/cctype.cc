@@ -27,22 +27,55 @@
  * 	Fax: (201) 236-3290
 */ 
 
-#include <tr1/memory>
+#include <string>
+using std::string;
+
+#include <cctype>
+using std::isupper; using std::toupper;
+using std::islower; using std::tolower;
+using std::isalpha; using std::isspace;
+
 #include <iostream>
-using std::tr1::weak_ptr; using std::tr1::shared_ptr;
+using std::cout; using std::endl;
 
 int main()
 {
-	shared_ptr<int> p(new int(42));
+	string s("Hello World!!!");
+	// punct_cnt has the same type that s.size returns
+	string::size_type punct_cnt = 0; 
+	
+	// count the number of punctuation characters in s
+	// for every char in s
+	for (string::size_type c = 0; c != s.size(); ++c)
+		if (ispunct(s[c]))   // if the character is punctuation
+			++punct_cnt;     // increment the punctuation counter
+	
+	cout << punct_cnt 
+	     << " punctuation characters in " << s << endl;
+	
+	// convert s to uppercase
+	string orig = s;
+	for (string::size_type c = 0; c != s.size(); ++c)
+		s[c] = toupper(s[c]);
+	cout << s << endl;
+	
+	// convert first word in s to uppercase
+	s = orig;  // restore s to original case
+	string::size_type index = 0;
 
-	weak_ptr<int> wp(p);  // wp weakly shares with p; use count in p is unchanged
+	// process characters in s until we run out of characters 
+	// or we hit a whitespace
+	while (index != s.size() && !isspace(s[index])) {
 
-	p.reset(); // assuming p.unique() was true, the int is deleted
+	    // s[index] returns a reference so we can change 
+		// the underlying character
+		s[index] = toupper(s[index]);
 
-	if (shared_ptr<int> np = wp.lock()) { // true if np is not null
-		// inside the if, np shares its object with p
-		std::cout << "wp is not null" << std::endl;
+		// increment the index to look at the next character 
+		// on the next iteration
+		++index; 
 	}
-	else
-		std::cout << "wp is null" << std::endl;
+	cout << s << endl;
+	
+	return 0;
 }

@@ -27,22 +27,16 @@
  * 	Fax: (201) 236-3290
 */ 
 
-#include <tr1/memory>
-#include <iostream>
-using std::tr1::weak_ptr; using std::tr1::shared_ptr;
+#include <iostream> 
+using std::cin; using std::cout; using std::endl;
 
-int main()
+#include <string> 
+using std::string;
+
+int main() 
 {
-	shared_ptr<int> p(new int(42));
-
-	weak_ptr<int> wp(p);  // wp weakly shares with p; use count in p is unchanged
-
-	p.reset(); // assuming p.unique() was true, the int is deleted
-
-	if (shared_ptr<int> np = wp.lock()) { // true if np is not null
-		// inside the if, np shares its object with p
-		std::cout << "wp is not null" << std::endl;
-	}
-	else
-		std::cout << "wp is null" << std::endl;
+	string word;
+	while (cin >> word)       // read until end-of-file 
+		cout << word << endl; // write each word followed by a new line
+	return 0;
 }

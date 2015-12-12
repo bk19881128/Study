@@ -27,22 +27,41 @@
  * 	Fax: (201) 236-3290
 */ 
 
-#include <tr1/memory>
 #include <iostream>
-using std::tr1::weak_ptr; using std::tr1::shared_ptr;
+using std::endl; using std::cout;
 
-int main()
+// prints a null-terminated array of characters
+void print(const char *cp)
 {
-	shared_ptr<int> p(new int(42));
+	if (cp)          // if cp is not a null pointer
+		while (*cp)  // so long as the character it points to is not a null character
+			cout << *cp++;  // print the character and advance the pointer
+}
 
-	weak_ptr<int> wp(p);  // wp weakly shares with p; use count in p is unchanged
+// print ints in the given range
+void print(const int *beg, const int *end) 
+{
+	// print every element starting at beg up to but not including end
+    while (beg != end) 
+        cout << *beg++ << " "; // print the current element 
+		                       // and advance the pointer
+}
 
-	p.reset(); // assuming p.unique() was true, the int is deleted
+int main() 
+{
+	print("hi world!"); // calls first version of print
+	cout << endl;
 
-	if (shared_ptr<int> np = wp.lock()) { // true if np is not null
-		// inside the if, np shares its object with p
-		std::cout << "wp is not null" << std::endl;
-	}
-	else
-		std::cout << "wp is null" << std::endl;
+    // j is converted to a pointer to the first element in j
+    // the second argument is a pointer to one past the end of j
+	// use sizeof to calculate the size of the array
+    int j[2] = {0, 1};  
+    print(j, j + sizeof(j)/sizeof(*j));                                    
+	cout << endl;
+
+	// equivalent call, directly calculate the begin and end pointers
+	print(j, j + 2); 
+	cout << endl;
+
+    return 0;
 }

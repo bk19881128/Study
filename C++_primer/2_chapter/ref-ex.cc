@@ -27,22 +27,19 @@
  * 	Fax: (201) 236-3290
 */ 
 
-#include <tr1/memory>
 #include <iostream>
-using std::tr1::weak_ptr; using std::tr1::shared_ptr;
-
 int main()
 {
-	shared_ptr<int> p(new int(42));
+	int i = 0, &ri = i;  // ri is a reference to i
+	// ri is just another name for i; 
+	// this statement prints the value of i twice
+	std::cout << i << " " << ri << std::endl;
 
-	weak_ptr<int> wp(p);  // wp weakly shares with p; use count in p is unchanged
+	i = 5; // changing i is reflected through ri as well
+	std::cout << i << " " << ri << std::endl;
 
-	p.reset(); // assuming p.unique() was true, the int is deleted
+	ri = 10; // assigning to ri actually assigns to i
+	std::cout << i << " " << ri << std::endl;
 
-	if (shared_ptr<int> np = wp.lock()) { // true if np is not null
-		// inside the if, np shares its object with p
-		std::cout << "wp is not null" << std::endl;
-	}
-	else
-		std::cout << "wp is null" << std::endl;
+	return 0;
 }

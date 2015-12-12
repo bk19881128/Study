@@ -27,22 +27,22 @@
  * 	Fax: (201) 236-3290
 */ 
 
-#include <tr1/memory>
 #include <iostream>
-using std::tr1::weak_ptr; using std::tr1::shared_ptr;
+using std::cout; using std::endl;
+
+#include <cstddef>
+using std::size_t;
+
+int ia[] = {0,1,2,3,4,5,6,7,8,9};
 
 int main()
 {
-	shared_ptr<int> p(new int(42));
+   // sizeof(ia)/sizeof(*ia) returns the number of elements in ia
+   const size_t sz = sizeof(ia)/sizeof(*ia);
 
-	weak_ptr<int> wp(p);  // wp weakly shares with p; use count in p is unchanged
+   int arr2[sz];  // ok sizeof returns a constant expression 
 
-	p.reset(); // assuming p.unique() was true, the int is deleted
+   cout << "ia size: " << sz << endl;
 
-	if (shared_ptr<int> np = wp.lock()) { // true if np is not null
-		// inside the if, np shares its object with p
-		std::cout << "wp is not null" << std::endl;
-	}
-	else
-		std::cout << "wp is null" << std::endl;
+   return 0;
 }

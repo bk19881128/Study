@@ -27,22 +27,21 @@
  * 	Fax: (201) 236-3290
 */ 
 
-#include <tr1/memory>
 #include <iostream>
-using std::tr1::weak_ptr; using std::tr1::shared_ptr;
+#include "Sales_item.h"
 
-int main()
+int main() 
 {
-	shared_ptr<int> p(new int(42));
+    Sales_item item1, item2;
 
-	weak_ptr<int> wp(p);  // wp weakly shares with p; use count in p is unchanged
-
-	p.reset(); // assuming p.unique() was true, the int is deleted
-
-	if (shared_ptr<int> np = wp.lock()) { // true if np is not null
-		// inside the if, np shares its object with p
-		std::cout << "wp is not null" << std::endl;
+    std::cin >> item1 >> item2;
+	// first check that item1 and item2 represent the same book
+	if (item1.isbn() == item2.isbn()) {
+    	std::cout << item1 + item2 << std::endl;
+    	return 0;   // indicate success
+	} else {
+    	std::cerr << "Data must refer to same ISBN" 
+		          << std::endl;
+    	return -1;  // indicate failure
 	}
-	else
-		std::cout << "wp is null" << std::endl;
 }

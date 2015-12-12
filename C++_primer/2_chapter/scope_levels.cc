@@ -27,22 +27,27 @@
  * 	Fax: (201) 236-3290
 */ 
 
-#include <tr1/memory>
 #include <iostream>
-using std::tr1::weak_ptr; using std::tr1::shared_ptr;
+
+// Program for illustration purposes only: It is bad style for a function
+// to use a global variable and also define a local variable with the same name
+
+int reused = 42;  // reused has global scope
 
 int main()
 {
-	shared_ptr<int> p(new int(42));
+	int unique = 0; // unique has block scope
 
-	weak_ptr<int> wp(p);  // wp weakly shares with p; use count in p is unchanged
+	// output #1: uses global reused; prints 42 0
+	std::cout << reused << " " << unique << std::endl;   
 
-	p.reset(); // assuming p.unique() was true, the int is deleted
+	int reused = 0; // new, local object named reused hides global reused
 
-	if (shared_ptr<int> np = wp.lock()) { // true if np is not null
-		// inside the if, np shares its object with p
-		std::cout << "wp is not null" << std::endl;
-	}
-	else
-		std::cout << "wp is null" << std::endl;
+	// output #2: uses local reused; prints 0 0
+	std::cout << reused << " " <<  unique << std::endl;  
+
+	// output #3: explicitly requests the global reused; prints 42 0
+	std::cout << ::reused << " " <<  unique << std::endl;  
+
+	return 0;
 }

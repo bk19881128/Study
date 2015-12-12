@@ -27,22 +27,27 @@
  * 	Fax: (201) 236-3290
 */ 
 
-#include <tr1/memory>
 #include <iostream>
-using std::tr1::weak_ptr; using std::tr1::shared_ptr;
+using std::cin; using std::cout; using std::endl;
+
+#include <string>
+using std::string;
 
 int main()
 {
-	shared_ptr<int> p(new int(42));
+    // repeatedly ask the user for a pair of numbers to sum
+    string rsp;  // used in the condition; can't be defined inside the do
+    do {
+        cout << "please enter two values: ";
+        int val1 = 0, val2 = 0;
+        cin  >> val1 >> val2;
+        cout << "The sum of " << val1 << " and " << val2
+             << " = " << val1 + val2 << "\n\n"
+             << "More? Enter yes or no: ";
+        cin  >> rsp;
+    } while (!rsp.empty() && rsp[0] != 'n');
 
-	weak_ptr<int> wp(p);  // wp weakly shares with p; use count in p is unchanged
+	cout << endl;
 
-	p.reset(); // assuming p.unique() was true, the int is deleted
-
-	if (shared_ptr<int> np = wp.lock()) { // true if np is not null
-		// inside the if, np shares its object with p
-		std::cout << "wp is not null" << std::endl;
-	}
-	else
-		std::cout << "wp is null" << std::endl;
+	return 0;
 }

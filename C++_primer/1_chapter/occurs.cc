@@ -27,22 +27,29 @@
  * 	Fax: (201) 236-3290
 */ 
 
-#include <tr1/memory>
 #include <iostream>
-using std::tr1::weak_ptr; using std::tr1::shared_ptr;
 
 int main()
 {
-	shared_ptr<int> p(new int(42));
+	// currVal is the number we're counting; we'll read new values into val
+	int currVal = 0, val = 0;
 
-	weak_ptr<int> wp(p);  // wp weakly shares with p; use count in p is unchanged
-
-	p.reset(); // assuming p.unique() was true, the int is deleted
-
-	if (shared_ptr<int> np = wp.lock()) { // true if np is not null
-		// inside the if, np shares its object with p
-		std::cout << "wp is not null" << std::endl;
-	}
-	else
-		std::cout << "wp is null" << std::endl;
+	// read first number and ensure that we have data to process
+	if (std::cin >> currVal) {        
+		int cnt = 1;  // store the count for the current value we're processing
+		while (std::cin >> val) { // read the remaining numbers 
+			if (val == currVal)   // if the values are the same
+				++cnt;            // add 1 to cnt 
+			else { // otherwise, print the count for the previous value
+				std::cout << currVal << " occurs " 
+				          << cnt << " times" << std::endl;
+				currVal = val;    // remember the new value
+				cnt = 1;          // reset the counter
+			}
+		}  // while loop ends here
+		// remember to print the count for the last value in the file
+		std::cout << currVal << " occurs " 
+		          << cnt << " times" << std::endl;
+	} // outermost if statement ends here
+	return 0;
 }
