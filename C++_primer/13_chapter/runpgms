@@ -1,0 +1,8 @@
+
+../noinput FolderMain HasPtrUseCount \
+		   HasPtrValueLike \
+		   moveHP serial \
+		   StrFolderMain substr useStrVec
+
+# c++ 11 files:
+# ../noinput copyNoMove

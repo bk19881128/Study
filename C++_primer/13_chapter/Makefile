@@ -1,12 +1,11 @@
 include ../../Makefile.inc
 
-TARGET = allocPtr allocSP \
-                  oknew querymain \
-                  unique UP \
-                  usealloc usealloc2 \
-                  useBlob weak release
+TARGET = FolderMain HasPtrUseCount \
+                  HasPtrValueLike \
+                  moveHP serial StrFolderMain \
+                  useStrVec substr copyNoMove
 
-DIRS_TARGET =  1 6 23
+#DIRS_TARGET =  1 6 23
 
 all:$(TARGET) dir_build obj_clean
 
@@ -25,9 +24,15 @@ dir_build :
 dir_build_allgen :
 	@ for dir in ${DIRS_TARGET}; do (cd $${dir}; ${MAKE} allgen) ; done
 
-LOCFLAGS = -I../7_chapter -I../10_chapter    
+LOCFLAGS = -I../7_chapter -I../1_chapter    
 
-querymain: querymain.cc TextQuery.cc
+useStrVec: StrVec.cc useStrVec.cc
+	$(CXX) -o $@ $^ ${CXXFLAGS} $(LOCFLAGS)
+
+FolderMain: Folder.cc FolderMain.cc
+	$(CXX) -o $@ $^ ${CXXFLAGS} $(LOCFLAGS)
+
+StrFolderMain: StrFolder.cc StrFolderMain.cc String.cc
 	$(CXX) -o $@ $^ ${CXXFLAGS} $(LOCFLAGS)
 
 % : %.cc
