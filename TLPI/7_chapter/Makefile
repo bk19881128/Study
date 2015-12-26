@@ -1,6 +1,6 @@
 include ../Makefile.inc.exercise
 
-TARGET = 1_large_file 2_append 3_atomic_append 4_dup 5_dup_share 7_readv_writev
+TARGET = 1_free_and_sbrk
 
 DIRS_TARGET =
 
