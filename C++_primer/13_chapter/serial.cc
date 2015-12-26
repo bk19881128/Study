@@ -45,8 +45,14 @@ size_t numbered::sn = 0;
 
 void f (numbered s) { cout << s.mysn << endl; }
 
+void f1 (const numbered &s) { cout << s.mysn << endl; }
+
 int main()
 {
 	numbered a, b = a, c = b; 
+	cout << a.mysn << endl;
+	cout << b.mysn << endl;
+	cout << c.mysn << endl;
+	f1(a); f1(b); f1(c);
 	f(a); f(b); f(c);
 }

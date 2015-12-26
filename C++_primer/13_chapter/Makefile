@@ -5,7 +5,7 @@ TARGET = FolderMain HasPtrUseCount \
                   moveHP serial StrFolderMain \
                   useStrVec substr copyNoMove
 
-#DIRS_TARGET =  1 6 23
+DIRS_TARGET =  5 13 18
 
 all:$(TARGET) dir_build obj_clean
 
