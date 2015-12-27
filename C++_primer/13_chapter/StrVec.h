@@ -33,6 +33,7 @@
 #include <iostream>
 #include <memory>
 #include <utility>
+#include <initializer_list>
 
 // simplified implementation of the memory allocation strategy for a vector-like class
 class StrVec {
@@ -40,6 +41,9 @@ public:
 	// copy control members
     StrVec(): 
 	  elements(0), first_free(0), cap(0) { }
+
+    //add to demo 13.40
+    StrVec(std::initializer_list<std::string> args);
 
 	StrVec(const StrVec&);            // copy constructor
 	StrVec &operator=(const StrVec&); // copy assignment
@@ -77,6 +81,8 @@ private:
 	std::pair<std::string*, std::string*> alloc_n_copy
 	    (const std::string*, const std::string*);
 	void free();             // destroy the elements and free the space
+    //add to demo 13.43
+    void my_free();
     void reallocate();       // get more space and copy the existing elements
     std::string *elements;   // pointer to the first element in the array
     std::string *first_free; // pointer to the first free element in the array
@@ -121,6 +127,17 @@ void StrVec::free()
 		alloc.deallocate(elements, cap - elements);
 	}
 }
+
+//add to demo 13.43
+inline
+void StrVec::my_free()
+{
+	if (elements) {
+		for_each(elements, first_free, [](std::string p) {alloc.destroy(&p);});
+		alloc.deallocate(elements, cap - elements);
+        }
+
+}
 	
 inline
 StrVec &StrVec::operator=(const StrVec &rhs)
@@ -128,7 +145,7 @@ StrVec &StrVec::operator=(const StrVec &rhs)
 	// call alloc_n_copy to allocate exactly as many elements as in rhs
 	std::pair<std::string*, std::string*> data = 
 							alloc_n_copy(rhs.begin(), rhs.end());
-	free();
+	my_free();
 	elements = data.first;
 	first_free = cap = data.second;
 	return *this;
@@ -149,7 +166,7 @@ void StrVec::reallocate()
 	for (size_t i = 0; i != size(); ++i)
 		alloc.construct(dest++, *elem++);
 
-	free();  // free the old space once we've moved the elements
+	my_free();  // free the old space once we've moved the elements
 
     // update our data structure to point to the new elements
     elements = newdata;
@@ -172,6 +189,14 @@ void StrVec::push_back(const std::string& s)
     chk_n_alloc(); // ensure that there is room for another element
     // construct a copy of s in the element to which first_free points
     alloc.construct(first_free++, s);  
+}
+
+inline
+StrVec::StrVec(std::initializer_list<std::string> args)
+{
+        std::pair<std::string*, std::string*> newdata = alloc_n_copy(args.begin(), args.end());
+        elements = newdata.first;
+        first_free = cap = newdata.second;
 }
 
 #endif

@@ -60,6 +60,9 @@ int main()
 	string temp[] = {"one", "two", "three"};
 	StrVec sv(temp, temp + sizeof(temp)/sizeof(*temp));
 
+	//to demo 13.40
+	StrVec sv1 = {"one", "two", "three"};
+
 	// run the string empty funciton on the first element in sv
 	if (!sv[0].empty()) 
 		sv[0] = "None"; // assign a new value to the first string 
