@@ -1,11 +1,9 @@
 include ../../Makefile.inc
 
-TARGET = FolderMain HasPtrUseCount \
-                  HasPtrValueLike \
-                  moveHP serial StrFolderMain \
-                  useStrVec substr copyNoMove
+TARGET = absInt add calc directcall \
+                  fcnobj newcount-size readStr
 
-DIRS_TARGET =  5 13 18 46 56
+#DIRS_TARGET =  5 13 18 46 56
 
 all:$(TARGET) dir_build obj_clean
 
@@ -24,15 +22,12 @@ dir_build :
 dir_build_allgen :
 	@ for dir in ${DIRS_TARGET}; do (cd $${dir}; ${MAKE} allgen) ; done
 
-LOCFLAGS = -I../7_chapter -I../1_chapter    
+LOCFLAGS = -I../6_chapter -I../1_chapter    
 
-useStrVec: StrVec.cc useStrVec.cc
+add: add.cc Sales_data.cc
 	$(CXX) -o $@ $^ ${CXXFLAGS} $(LOCFLAGS)
 
-FolderMain: Folder.cc FolderMain.cc
-	$(CXX) -o $@ $^ ${CXXFLAGS} $(LOCFLAGS)
-
-StrFolderMain: StrFolder.cc StrFolderMain.cc String.cc
+directcall: directcall.cc Sales_data.cc
 	$(CXX) -o $@ $^ ${CXXFLAGS} $(LOCFLAGS)
 
 % : %.cc

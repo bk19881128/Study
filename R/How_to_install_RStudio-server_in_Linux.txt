@@ -1,0 +1,20 @@
+apt-get update
+apt-get install r-base r-base-dev
+安装Rstudio Server
+1、sudo apt-get install gdebi-core
+2、sudo apt-get install libapparmor1  
+3、 wget http://download2.rstudio.org/rstudio-server-0.98.490-amd64.deb
+4、 sudo gdebi rstudio-server-0.98.490-amd64.deb
+
+经过这四条命令呢，你的Rstudio Server 应该已经安装成功，下面可以访问试一下
+
+5、输入命令$ sudo rstudio-server verify-installation 进行安装测试。。
+
+6、在浏览器输入 ： http://你的服务器ip:8787  
+
+8787 为Rstudio Server  默认的兼听端口，可以自己配置
+其中搜寻自己电脑IP：
+7、终端输入：ifconfig  会出现如下图
+
+linux-ubuntu下安装R及其Rstudio
+8、正常打开后需要输入用户名密码，用户名密码为服务器用户名密码，输入的用户名密码的权限必须小于100
