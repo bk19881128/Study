@@ -1,9 +1,8 @@
-include ../../Makefile.inc
+include ../../../Makefile.inc
 
-TARGET = absInt add calc directcall \
-                  fcnobj newcount-size readStr
+TARGET = function_object_test
 
-DIRS_TARGET =  34 35 37 38 42 43
+DIRS_TARGET = 
 
 all:$(TARGET) dir_build obj_clean
 
@@ -22,13 +21,6 @@ dir_build :
 dir_build_allgen :
 	@ for dir in ${DIRS_TARGET}; do (cd $${dir}; ${MAKE} allgen) ; done
 
-LOCFLAGS = -I../6_chapter -I../1_chapter    
-
-add: add.cc Sales_data.cc
-	$(CXX) -o $@ $^ ${CXXFLAGS} $(LOCFLAGS)
-
-directcall: directcall.cc Sales_data.cc
-	$(CXX) -o $@ $^ ${CXXFLAGS} $(LOCFLAGS)
-
 % : %.cc
-	$(CXX) -o $@ $^ ${CXXFLAGS} $(LOCFLAGS)
+	$(CXX) -o $@ $^ ${CXXFLAGS}
+
