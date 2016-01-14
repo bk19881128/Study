@@ -1,0 +1,7 @@
+echo "andQueryTest: " && ./andQueryTest data/storyDataFile < data/two
+echo "and_orQueryTest: " && ./and_orQueryTest data/storyDataFile < data/three
+echo "wordQueryTest: " && ./wordQueryTest data/storyDataFile < data/querymain
+
+../noinput Basket_main sample \
+		   scope  useQuote vecBasket \
+		   virtualsNscope
