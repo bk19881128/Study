@@ -3,7 +3,7 @@ include ../../Makefile.inc
 TARGET = absInt add calc directcall \
                   fcnobj newcount-size readStr
 
-DIRS_TARGET =  34 35 37 38 42 43
+DIRS_TARGET =  34 35 37 38 42 43 45 50
 
 all:$(TARGET) dir_build obj_clean
 
