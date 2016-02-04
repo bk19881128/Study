@@ -1,0 +1,13 @@
+echo "badgetc: " && ./badgetc < data/skipws
+echo "bits: " && ./bits < data/bits
+echo "findbook: " && ./findbook data/store*
+echo "game: " && ./game < data/game
+echo "getc: " && ./getc < data/skipws
+echo "getput: " && ./getput < data/skipws
+echo "no-skipws: " && ./no-skipws < data/no-skipws
+echo "skipws: " && ./skipws < data/skipws
+
+
+../noinput manips point \
+		   prec  rand1 rand2 rand4 \
+		   rand6 seed seek setw tuple 

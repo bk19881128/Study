@@ -1,0 +1,9 @@
+echo "compareDef: " && ./compareDef < data/book_sales
+echo "multiset: " && ./multiset < data/book_trans
+echo "Vecmain: " && ./Vecmain < data/Vecmain
+
+../noinput Array array-parms4 \
+		   compare compareSpec \
+		   debug overloaded overSpec qm \
+		   SP special specialized \
+		   useBlob useChcking 

@@ -1,0 +1,6 @@
+echo "book: " && ./book < data/book_sales
+
+../noinput Animal ex-over inherit mi-scope\
+            over over2 \
+            usingDirective virt-inherit
+

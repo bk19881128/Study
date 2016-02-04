@@ -1,0 +1,4 @@
+../noinput bitfields calc dyn_cast enum \
+		   enum-match typeid \
+		   useScreen 
+
