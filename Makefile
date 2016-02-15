@@ -10,6 +10,7 @@ DIRS = Algorithm \
        Interview \
        Neo \
        TLPI \
+       DesignPatterns \
 
 BUILD_DIRS = ${DIRS}
 

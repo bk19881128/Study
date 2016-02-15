@@ -4,7 +4,7 @@
 #
 #
 
-DIRS = Tree
+DIRS =  Stack Tree
 
 
 BUILD_DIRS = ${DIRS}
