@@ -2,6 +2,7 @@
 #define _BKGETMINSTACK_H_
 
 #include <stack>
+#include <stdexcept>
 using namespace std;
 
 class getMinStack {

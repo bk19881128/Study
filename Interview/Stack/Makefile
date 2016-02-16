@@ -1,6 +1,6 @@
 include ../../Makefile.inc
 
-TARGET = 1_problem
+TARGET = 1_problem 2_problem
 
 DIRS_TARGET =
 
